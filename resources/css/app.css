@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand colour tokens (Deep Navy / Elegant Gold system) ---- */
+  --color-navy-950: #071228;
+  --color-navy-900: #0b1e3d;
+  --color-navy-800: #122a52;
+  --color-navy-700: #1c3a6b;
+  --color-gold-600: #a9821c;
+  --color-gold-500: #c9a227;
+  --color-gold-400: #e4c158;
+  --color-gold-100: #f7edcd;
+  --color-grey-100: #f4f5f7;
+  --color-grey-200: #e8eaee;
+  --color-ink-900: #1e2733;
+  --color-ink-600: #4a5563;
+  --color-ink-400: #64707d;
+  --color-stamp-green: #2f6f4e;
+
+  /* ---- Type families ---- */
+  --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink-900);
+    background-color: #ffffff;
+  }
+  h1, h2, h3, h4, h5, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  .font-mono-tag {
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  ::selection {
+    background: var(--color-gold-400);
+    color: var(--color-navy-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Eyebrow label used above section headings - reads like a manifest/ticket label */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-600);
+  }
+
+  /* Signature component: boarding-pass style card used for vacancies & process steps */
+  .boarding-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid var(--color-grey-200);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .boarding-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(11, 30, 61, 0.04);
+    pointer-events: none;
+  }
+  .boarding-stub {
+    border-top: 1.5px dashed var(--color-grey-200);
+    position: relative;
+  }
+  .boarding-stub::before,
+  .boarding-stub::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 9999px;
+    border: 1px solid var(--color-grey-200);
+  }
+  .boarding-stub::before { left: -8px; }
+  .boarding-stub::after { right: -8px; }
+
+  .stamp-ring {
+    border: 1.5px solid currentColor;
+    border-radius: 9999px;
+  }
+
+  .route-dash {
+    stroke-dasharray: 6 7;
+  }
+}
